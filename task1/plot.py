@@ -61,3 +61,33 @@ plt.grid()
 
 plt.savefig("error.png")
 plt.close()
+
+
+threads = []
+rectangle_thread_time = []
+montecarlo_thread_time = []
+
+with open("threads.csv", "r") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        threads.append(int(row["threads"]))
+        rectangle_thread_time.append(float(row["rectangle_time"]))
+        montecarlo_thread_time.append(float(row["montecarlo_time"]))
+
+
+plt.figure(figsize=(16, 9))
+
+plt.plot(threads, rectangle_thread_time, label="Rectangle")
+
+plt.plot(threads, montecarlo_thread_time, label="Monte Carlo")
+
+plt.xlabel("Number of threads")
+plt.ylabel("Time, microseconds")
+plt.title("Execution time depending on number of threads")
+
+plt.xticks(threads)
+plt.legend()
+
+plt.savefig("threads_time.png")
+plt.close()
