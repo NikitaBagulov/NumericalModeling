@@ -5,10 +5,11 @@
 
 #include "adapt.hpp"
 
+
 using namespace std;
 
 double f(double x) {
-    return pow(x, 2)*sin(x); 
+    return sin(15 * x) + 0.5 * sin(40 * x);
 }
 
 double adapt_int(double a, double b, double eps, double Int_old, unordered_map<double, double>& points) {
@@ -22,7 +23,7 @@ double adapt_int(double a, double b, double eps, double Int_old, unordered_map<d
     double Int_right = f(x12) * h;
     double Int_new = Int_left + Int_right;
 
-    if ((Int_old - Int_new) < eps) {
+    if (std::abs(Int_old - Int_new) < eps) {
         points[x11] = h;
         points[x12] = h;
         return Int_new;
