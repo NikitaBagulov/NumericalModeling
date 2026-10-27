@@ -85,7 +85,7 @@ int main() {
             double mid = (left + right) / 2.0;
             double Int_part = f(mid) * (right - left);
 
-            sum += adapt_int(left, right, epsilon / N, Int_part, points);
+            sum += adapt_int(left, right, epsilon, Int_part, points);
         }
 
         auto finish = chrono::high_resolution_clock::now();
